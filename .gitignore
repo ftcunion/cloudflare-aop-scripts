@@ -1,0 +1,8 @@
+# Certificate files
+/rootca.crt
+/rootca.key
+/rootca.srl
+/cert.crt
+/cert.csr
+/cert.key
+/cert.v3.ext

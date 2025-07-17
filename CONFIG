@@ -1,0 +1,4 @@
+MYAUTHEMAIL=""    # Email for Cloudflare account
+MYAUTHKEY=""      # Global API Key for Cloudflare account, https://dash.cloudflare.com/profile/api-tokens
+ZONEID=""         # Zone ID for domain, available in overview tab of Cloudflare dashboard
+HOSTNAME=""       # Hostname for hostname-level scripts

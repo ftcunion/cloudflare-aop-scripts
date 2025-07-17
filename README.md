@@ -1,2 +1,41 @@
-# cloudflare aop scripts
- Short shell scripts to interact with the Cloudflare api for authenticated origin pulls
+# Cloudflare Authenticated Origin Pull Scripts
+
+This repository contains several minimal bash scripts which help you follow the instructions provided by Cloudflare to set up authenticated origin pulls:
+
+- [Zone level instructions](https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull/set-up/zone-level/): scripts are in the `zone` directory.
+- [Hostname level instructions](https://developers.cloudflare.com/ssl/origin-configuration/authenticated-origin-pull/set-up/per-hostname/): scripts are in the `hostname` directory.
+
+To generate the certificates, you can use the `generate_certs.sh` script in the root directory. This script follows the instructions in the "Before you begin" section of the Cloudflare documentation.
+
+In each directory, there are scripts to:
+
+- `upload_cert.sh`: Upload the generated certificate and private key to Cloudflare. It assumes the paths from the `generate_certs.sh` script.
+- `enable_cert.sh`: Enable the uploaded certificate for authenticated origin pulls.
+- `list_cert.sh`: List the certificates uploaded for the zone or hostname.
+- `status_cert.sh`: Check the status of a certificate.
+- `delete_cert.sh`: Delete a certificate.
+
+Of these, only the first two are required to set up authenticated origin pulls. The others are for managing the certificates and debugging. Each script just calls curl with the appropriate parameters.
+
+## Dependencies
+
+Every script except for `generate_certs.sh` requires `curl` (which is not preinstalled on Debian/Ubuntu). The `generate_certs.sh` script requires `openssl`.
+
+## Usage
+
+To use the scripts, you need to set up the `CONFIG` file with your Cloudflare account details:
+
+```bash
+MYAUTHEMAIL=""    # Email for Cloudflare account
+MYAUTHKEY=""      # Global API Key for Cloudflare account, https://dash.cloudflare.com/profile/api-tokens
+ZONEID=""         # Zone ID for domain, available in overview tab of Cloudflare dashboard
+HOSTNAME=""       # Hostname for hostname-level scripts
+```
+
+You can then run the scripts from the root of this repository. For example, to upload a zone-level certificate, you would run:
+
+```bash
+./zone/upload_cert.sh | jq
+```
+
+Piping to `jq` is optional. It just makes the json output look nice.
