@@ -32,7 +32,7 @@ ZONEID=""         # Zone ID for domain, available in overview tab of Cloudflare 
 HOSTNAME=""       # Hostname for hostname-level scripts
 ```
 
-You can also start by copying the `CONFIG.example` file to `CONFIG` (i.e., `cp CONFIG.example CONFIG`) and filling in your details. You can then run the scripts from the root of this repository. For example, if you were following the instructions to set up a zone-level certificate, you would run:
+You can also start by copying the `CONFIG.template` file to `CONFIG` (i.e., `cp CONFIG.template CONFIG`) and filling in your details. You can then run the scripts from the root of this repository. For example, if you were following the instructions to set up a zone-level certificate, you would run:
 
 ```bash
 ./generate_certs.sh         # Step 0
